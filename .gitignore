@@ -1,0 +1,16 @@
+Dependency directories
+/vendor/
+
+Local data (sessions, cache, etc.)
+/var/sessions/*
+!/var/sessions/.gitignore # Keep the folder structure
+
+Database configuration (NEVER commit live credentials)
+.env
+.htaccess
+
+IDE and OS files
+.idea/
+.vscode/
+*.iml
+.DS_Store
