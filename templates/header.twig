@@ -1,0 +1,50 @@
+{% block content %}
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="{{ base_path() }}/">Cherygo's Bookshelf</a>
+        <button class="navbar-toggler" type="button">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ base_path() }}/my_books">My Books</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ base_path() }}/books_catalog">Catalog</a>
+                </li>
+                {% if session.username is defined %}
+                <li class="nav-item">
+                    <div class="btn-group dropend">
+                <button type="button" class="btn text-white-50 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                </button>
+                <ul class="dropdown-menu">
+
+                    {# admin check for dashboard page #}
+                    {% if session.role == 'admin' %}
+                        <li><a class="dropdown-item text-danger fw-bold" href="{{ base_path() }}/admin">
+                                <i class="fas fa-tools me-2"></i> Admin Dashboard
+                            </a></li>
+                        <li><hr class="dropdown-divider"></li>
+                    {% endif %}
+
+                    <li><a class="dropdown-item" href="{{ base_path() }}/logout">Logout</a></li>
+                </ul>
+                </div>
+                </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ base_path() }}/login">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ base_path() }}/register">Register</a>
+                        </li>
+                    {% endif %}
+
+            </ul>
+        </div>
+    </div>
+</nav>
+
+{% endblock %}
