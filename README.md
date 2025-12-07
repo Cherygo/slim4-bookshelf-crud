@@ -60,6 +60,15 @@ Role: user
 Username: test2
 Password: test2
 
+### Future Developments
+1. Move DB connection from public/index.php into .env.
+2. Normalize dbDump.sql file.
+3. Optimize public/index.php.
+4. Move the routing from src/Routes.php to public/index.php.
+5. Move all SQL language from routing into App/Repositories.
+6. Move all checks(admin check, email check, etc.) from routing into App/Controllers or App/Repositories.
+7. Host the website.
+
 ### Maintainer and Contributes
     Maintainer: Cherygo
     Contributions are welcome. Please open an issue or a PR for any bug fixes or improvements.
