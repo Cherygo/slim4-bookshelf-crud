@@ -11,18 +11,17 @@ It provides an environment to browse and choose books from a catalog, in which t
 - Admin Panel (CRUD): Administrators can manage users and books from the admin panel.
 
 ### Tech Stack
-- Backend: PHP 8.4.1
+- Backend: PHP 8.4
 - Framework: Slim 4
 - Templating: Twig
 - Database: MySQL
-- Container: PHP-DI
 - Frontend: Bootstrap
 
 ### Get Started
 Follow these steps to clone and run the application locally.
 
 What you need:
-- PHP 8.1 or higher
+- PHP 8.4 or higher
 - MySQL
 - Composer (package manager for PHP)
 
@@ -45,7 +44,6 @@ What you need:
        'dbname' => 'your_db_name', // <- UPDATE THIS
        'user' => 'your_db_username', // <- UPDATE THIS
        'pass' => 'your_db_password', // <- UPDATE THIS
-       'charset' => 'utf8mb4',
        ]
     4. Running the Application: Run the following command to start the built-in PHP server:
         php -S localhost:8000 -t public
