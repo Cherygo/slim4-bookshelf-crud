@@ -1,0 +1,16 @@
+/vendor/
+/var/sessions/*
+!/var/sessions/.gitignore # Keep the folder structure
+/src/
+
+.env
+.htaccess
+.idea/
+.vscode/
+*.iml
+.DS_Store
+
+# Windows specific
+*.identifier
+*:Zone.Identifier
+*Zone.Identifier*
