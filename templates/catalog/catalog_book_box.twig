@@ -1,0 +1,78 @@
+<style>
+    .book-card-fixed {
+    width: 250px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    }
+    .book-card-image {
+    width: 100%;
+    height: 250px;
+    object-fit: fill;
+    }
+    .card-title-container {
+    height: 3rem;
+    overflow: hidden;
+    }
+    .card-title {
+    font-size: 1.2rem;
+    margin-bottom: 0.2rem;
+    }
+    .card-author {
+    font-size: 1rem;
+    }
+
+</style>
+
+
+<div class="col-auto mb-4">
+    <div class="card book-card-fixed shadow-sm border-0">
+
+        <img src="{{ book.url | default('https://placehold.co/300x300/eeeeee/aaaaaa?text=No+Cover')}}"
+             class="card-img-top book-card-image"
+             alt="{{ book.title }}"
+        >
+
+        <div class="card-body d-flex flex-column p-3">
+
+            <div class="card-title-container">
+                <h5 class="card-title">{{ book.title }}</h5>
+            </div>
+
+            <p class="card-author text-muted mb-auto">{{ book.author }}</p>
+        </div>
+
+        <div class="card-footer bg-white border-top-0 p-3 d-flex justify-content-end align-items-center">
+
+            {% if book.id in bookmarkedBookIds %}
+{#                // add 1 method for getting book ids from bookmarks and 1 method for bookmark ids??#}
+{#                // OR 1 method that gets it all#}
+                <form action="{{ url_for('bookmarks.destroy', {'id': book.id }) }}" method="POST">
+
+                    <input type="hidden" name="_METHOD" value="DELETE">
+                    <input type="hidden" name="{{ csrf.key }}" value="{{ csrf.token }}">
+
+                    <button type="submit" class="btn btn-xs btn-danger">
+                        <i class="fas fa-heart"></i> Unbookmark
+                    </button>
+                </form>
+
+            {% else %}
+
+                <form action="{{ url_for('bookmarks.store') }}" method="POST">
+
+                    <input type="hidden" name="bookId" value="{{ book.id }}">
+
+                    <button type="submit" class="btn btn-xs btn-outline-danger">
+                        <i class="far fa-heart"></i> Bookmark
+                    </button>
+                </form>
+
+            {% endif %}
+
+        </div>
+    </div>
+
+
+</div>

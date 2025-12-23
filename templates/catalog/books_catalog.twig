@@ -1,0 +1,26 @@
+{% extends('layouts/layout.twig') %}
+
+{% block content %}
+    <div class="cat-text text-center mt-5 mb-4">
+
+    <h1>Global Book Catalog</h1>
+    <p class="lead text-muted">Browse all books and bookmark your favorites.</p>
+
+    </div>
+
+    <div class="row justify-content-center col-auto gap-4">
+        {% for book in books %}
+
+            {% include 'catalog/catalog_book_box.twig' with {'book': book} %}
+
+        {% else %}
+
+            <div class="col-12 alert alert-info">
+                <p class="mb-0">No books are currently in the catalog.</p>
+            </div>
+
+        {% endfor %}
+    </div>
+
+{% endblock %}
+
