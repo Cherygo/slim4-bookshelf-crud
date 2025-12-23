@@ -1,0 +1,60 @@
+{% extends 'layouts/layout.twig' %}
+
+{% block content %}
+
+    <div class="container mt-5">
+        <h1 class="mb-4">Book Catalog Management</h1>
+        <p class="lead text-muted">View, edit, and manage all books in the public catalog.</p>
+
+        <div class="d-flex justify-content-between mb-3">
+            <a href="/admin" class="btn btn-secondary">
+                <i class="fas fa-arrow-left me-2"></i> Back to Admin page
+            </a>
+            <a href="/admin/admin_add_book" class="btn btn-primary shadow-sm">
+                <i class="fas fa-plus me-2"></i> Add New Book
+            </a>
+        </div>
+
+        <div class="card shadow-sm">
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-hover mb-0">
+                        <thead class="table-light">
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Title</th>
+                            <th scope="col">Author</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for book in books %}
+                            <tr>
+                                <th scope="row">{{ book.id }}</th>
+                                <td>{{ book.title }}</td>
+                                <td>{{ book.author }}</td>
+                                <td>
+
+                                        <form action="/admin/admin_books/{delete}" method="POST" onsubmit="return confirm('Are you sure you want to delete this book? This action cannot be undone.');">
+                                            <input type="hidden" name="redirect_to" value="/admin/admin_books">
+                                            <button type="submit" class="btn btn-outline-danger">
+                                                Delete
+                                            </button>
+                                        </form>
+                                </td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="5" class="text-center py-4 text-muted">No books found in the catalog.</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    </div>
+{% endblock %}

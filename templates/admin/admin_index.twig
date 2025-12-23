@@ -1,0 +1,41 @@
+{% extends 'layouts/layout.twig' %}
+
+{% block content %}
+
+    <div class="container mt-5 bg-secondary-subtle opacity-75 p-5 rounded shadow-lg">
+        <h1 class="mb-4">Admin Dashboard</h1>
+        <p class="lead text-muted">Welcome to the administration panel. Manage users and the book catalog.</p>
+
+        <div class="row mt-5">
+
+            {# user management #}
+            <div class="col-md-6 mb-4">
+                <div class="card h-100 shadow-sm border-secondary">
+                    <div class="card-body">
+                        <h5 class="card-title text-primary"><i class="fas fa-users me-2"></i> User Management</h5>
+                        <p class="card-text">View, edit, and manage all registered user accounts and their roles.</p>
+                        <a href="/admin/admin_users" class="btn btn-outline-primary mt-3">
+                            Go to Users
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            {# book management #}
+            <div class="col-md-6 mb-4">
+                <div class="card h-100 shadow-sm border-info">
+                    <div class="card-body">
+                        <h5 class="card-title text-info"><i class="fas fa-book me-2"></i> Book Catalog Management</h5>
+                        <p class="card-text">Add, edit, or delete books from the central public catalog.</p>
+                        <a href="/admin/admin_books" class="btn btn-outline-info mt-3">
+                            Go to Books
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+{% endblock %}
