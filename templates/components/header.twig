@@ -1,0 +1,55 @@
+{% block content %}
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="/">Cherygo's Bookshelf</a>
+        <button class="navbar-toggler" type="button">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href='{{ url_for('bookmarks.index') }}'>My Books</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/catalog">Catalog</a>
+                </li>
+                {% if session.user.username is defined %}
+                <li class="nav-item">
+                    <div class="btn-group dropend">
+                <button type="button" class="btn text-white-50 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                </button>
+                <ul class="dropdown-menu">
+
+                    {# ADMIN #}
+                    {% if session.user.role == 'admin' %}
+                        <li><a class="dropdown-item text-danger fw-bold" href="/admin">
+                                <i class="fas fa-tools"></i> Admin Dashboard
+                            </a></li>
+                        <li><hr class="dropdown-divider"></li>
+                    {% endif %}
+
+                    <li>
+                        <form action="/logout" method="post">
+                            <button type="submit">
+                                Logout
+                            </button>
+                        </form>
+                </li>
+                </ul>
+                </div>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="/login">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/register">Register</a>
+                        </li>
+                    {% endif %}
+
+            </ul>
+        </div>
+    </div>
+</nav>
+
+{% endblock %}

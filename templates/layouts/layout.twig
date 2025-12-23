@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page_title | default('BookShelf') }}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
+    <style>
+        /* Existing custom CSS for book cards or other elements can go here */
+        .card-img-top {
+            height: 250px;
+            object-fit: cover;
+            width: 100%;
+        }
+
+
+        body {
+            background-color: #f2f2f2; /* Light grey base color */
+            background-image:
+                    radial-gradient(circle at 100% 150%, #e0e0e0 24%, #f2f2f2 25%, #f2f2f2 28%, #e0e0e0 29%, #e0e0e0 36%, #f2f2f2 36%, #f2f2f2 40%, transparent 40%, transparent),
+                    radial-gradient(circle at 0% 150%, #e0e0e0 24%, #f2f2f2 25%, #f2f2f2 28%, #e0e0e0 29%, #e0e0e0 36%, #f2f2f2 36%, #f2f2f2 40%, transparent 40%, transparent),
+                    radial-gradient(circle at 50% 100%, #f2f2f2 10%, #e0e0e0 11%, #e0e0e0 23%, #f2f2f2 24%, #f2f2f2 30%, #e0e0e0 31%, #e0e0e0 43%, #f2f2f2 44%, #f2f2f2);
+            background-size: 80px 80px; /* Adjust size as needed */
+            background-attachment: fixed;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+
+    </style>
+</head>
+<body>
+
+{% include 'components/header.twig' %}
+
+<main class="container mt-4">
+
+    {# FLASH MESSAGE DISPLAY #}
+    {% if flash is defined and flash is not null %}
+        {% for type, messages in flash %}
+        {% for message in messages %}
+        <div class="alert alert-{{ type }} alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endfor %}
+        {% endfor %}
+    {% endif %}
+
+    {% block content %}
+    {% endblock %}
+</main>
+
+{% include 'components/footer.twig' %}
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+</body>
+</html>
