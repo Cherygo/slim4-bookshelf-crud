@@ -1,0 +1,77 @@
+{% extends 'layouts/layout.twig' %}
+
+{% block content %}
+
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+
+            <h1 class="text-center mb-5">Discover the Newest Additions</h1>
+
+            {% if newest_books | length > 0 %}
+                <div id="newestBooksCarousel" class="carousel slide shadow-lg" data-bs-ride="carousel" style="min-height: 400px;">
+
+                    <div class="carousel-indicators">
+                        {% for book in newest_books %}
+                            <button type="button"
+                                    data-bs-target="#newestBooksCarousel"
+                                    data-bs-slide-to="{{ loop.index0 }}"
+                                    class="{% if loop.first %}active{% endif %}"
+                                    aria-current="{% if loop.first %}true{% else %}false{% endif %}"
+                                    aria-label="Slide {{ loop.index }}">
+                            </button>
+                        {% endfor %}
+                    </div>
+
+                    <div class="carousel-inner rounded">
+                        {% for book in newest_books %}
+
+                            <div class="carousel-item {% if loop.first %}active{% endif %}">
+
+                                <img src="{{ book.cover_image_url | default('https://placehold.co/1200x400/333333/ffffff?text=New+Book+Added') }}"
+                                     class="d-block w-100 object-fit-cover"
+                                     alt="{{ book.title }}"
+                                     style="height: 400px; filter: brightness(50%); object-fit: cover;">
+
+                                <div class="carousel-caption d-none d-md-block">
+                                    <h2 class="display-5">{{ book.title }}</h2>
+                                    <p class="lead">By: {{ book.author }}</p>
+                                    <a href="/catalog" class="btn btn-light mt-2">View Catalog</a>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+
+                    <button class="carousel-control-prev" type="button" data-bs-target="#newestBooksCarousel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#newestBooksCarousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+
+            {% else %}
+
+                <div class="shadow-lg bg-secondary-subtle text-center py-5">
+                    <h4 class="alert-heading">No New Books Available</h4>
+                    <p>The catalog is currently empty, or the database failed to load new additions.</p>
+                    <a href="/catalog" class="btn btn-info">Visit the Catalog</a>
+                </div>
+            {% endif %}
+
+        </div>
+
+
+    </div>
+
+    <hr class="my-5">
+
+    <h3 class="text-center mb-4">Jump to the Full Catalog</h3>
+    <div class="d-flex justify-content-center">
+        <a href="/catalog" class="link-underline-secondary link-offset-1 link-offset-2-hover text-black shadow-sm">
+            <i class="fas fa-book-open me-2"></i> Browse All Books ({{ total_book_count }})
+        </a>
+    </div>
+
+{% endblock %}
