@@ -1,0 +1,42 @@
+{% extends('layouts/layout.twig') %}
+
+{% block content %}
+
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-6 col-lg-4">
+            <div class="card shadow-sm border-0">
+                <div class="card-body p-4">
+                    <h3 class="card-title text-center mb-4">Login to Cherygo's BookShelf</h3>
+
+                    <form action="/login" method="POST">
+
+                        <div class="mb-3">
+                            <label for="identifier" class="form-label">Email or Username</label>
+                            <input type="text" class="form-control" id="identifier" name="identifier">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="password" name="password">
+                        </div>
+
+                        {% if session.errors is not empty %}
+                            {% for error in session.errors %}
+                                <p class="text-danger">{{ error }}</p>
+                            {% endfor %}
+                        {% endif %}
+
+                        <button type="submit" class="btn btn-primary w-100 mt-3">Login</button>
+                    </form>
+
+                    <div class="text-center mt-4">
+                        <p class="text-muted mb-0">Don't have an account?</p>
+                        <a href="/register" class="fw-medium">Sign up here</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
