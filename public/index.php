@@ -16,9 +16,12 @@ use Slim\Psr7\Response;
 use Slim\Routing\RouteCollectorProxy;
 use Slim\Views\Twig;
 use Slim\Views\TwigMiddleware;
+use Dotenv\Dotenv;
 
 require __DIR__ . '/../vendor/autoload.php';
 
+$dotenv = Dotenv::createImmutable(__DIR__ . '/../');
+$dotenv->safeLoad();
 
 
 session_start();
@@ -35,12 +38,15 @@ $container->set('flash', function () {
 
 $container->set(PDO::class, function () {
     try {
-        $host = '127.0.0.1';
-        $dbname = 'Bookshelf';
-        $user = 'Cherygo';
-        $pass = 'root';
+        $host = $_ENV['DB_HOST'];
+        $port = $_ENV['DB_PORT'] ?? 3306;
+        $dbname = $_ENV['DB_NAME'];
+        $user = $_ENV['DB_USER'];
+        $pass = $_ENV['DB_PASS'];
 
-        $conn = new PDO("mysql:host=$host;port=3306;dbname=$dbname", $user, $pass);
+        $conn = new PDO("mysql:host=$host;port=$port;dbname=$dbname", $user, $pass);
+
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $conn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 
         return $conn;
