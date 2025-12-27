@@ -60,20 +60,17 @@ class UserService
 
         $userData = $this->userRepository->findByEmailOrUsername($identifier);
 
-        if (!$userData || !$password) {
+        $user = $userData ? User::fromArray($userData) : null;
+
+        if ( !$user || empty($password) ||!password_verify($password, $user->password)) {
             $_SESSION['errors'][] = 'Incorrect login credentials';
         }
-
-        $user = User::fromArray($userData);
-        if (!password_verify($password, $user->password)) {
-            $_SESSION['errors'][] = 'Incorrect login credentials';
-        }
-
-        $this->makeSession($user);
 
         if(!empty($_SESSION['errors'])) {
             throw new \RuntimeException();
         }
+
+        $this->makeSession($user);
 
         return null;
     }
