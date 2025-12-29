@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\BookController as AdminBookController;
+use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\BookmarkController;
@@ -131,6 +132,8 @@ $app->delete('/my_bookmarks/{id}', BookmarkController::class . ':deleteBookmark'
 // Admin
 $app->group('/admin', function (RouteCollectorProxy $group) {
     $group->get('', AdminController::class);
+
+//    BOOKS
     $group->get('/books', AdminBookController::class . ':index')->setName('books.index');
 
     $group->get('/books/create', AdminBookController::class . ':create')
@@ -138,8 +141,13 @@ $app->group('/admin', function (RouteCollectorProxy $group) {
     $group->post('/books/create', AdminBookController::class . ':store')
         ->setName('books.store');
 
-    $group->post('books/{id}/destroy', AdminBookController::class . ':destroy')
+    $group->post('/books/{id}/destroy', AdminBookController::class . ':destroy')
         ->setName('books.destroy');
+
+//    USERS
+    $group->get('/users/index', AdminuserController::class . ':index')->setName('users.index');
+    $group->post('/users/{id}/change-role', AdminuserController::class . ':changeUserRole')
+        ->setName('users.change-role');
 
 })->add(new AdminMiddleware());
 
