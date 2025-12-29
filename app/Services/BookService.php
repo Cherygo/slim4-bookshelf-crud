@@ -4,17 +4,32 @@ namespace App\Services;
 
 use App\DTOs\BookDTO;
 use App\Repositories\BookRepository;
+use Symfony\Component\Translation\Exception\RuntimeException;
 
-class BookService
+readonly class BookService
 {
     public function __construct(
-        private readonly BookRepository $bookRepository,
+        private BookRepository $bookRepository,
     ) {
     }
 
 
-    public function addBook(BookDTO $bookDTO)
+    public function store(BookDTO $bookData)
     {
+        $_SESSION['errors'] = [];
 
+        if(!$bookData->title || !$bookData->author) {
+            $_SESSION['errors'][] = 'Fill all required fields';
+        }
+
+        if($bookData->url === null) {
+            $bookData->url = '';
+        }
+
+        if(!empty($_SESSION['errors'])) {
+            throw new \RuntimeException();
+        }
+
+        $this->bookRepository->addBook($bookData);
     }
 }
