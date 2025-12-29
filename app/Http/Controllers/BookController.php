@@ -45,16 +45,4 @@ class BookController extends Controller
             'bookmarkedBookIds' => $bookmarkedBookIds,
         ]);
     }
-
-    public function store(Request $request, Response $response)
-    {
-        $params = (array)$request->getParsedBody();
-        $book = new BookDTO($params['author'], $params['title'], $params['url']);
-
-        try {
-            $this->bookRepository->addBook($book->toArray());
-        } catch (\RuntimeException $e) {
-            $this->flash->addMessage('danger', "Book could be added");
-        }
-    }
 }
