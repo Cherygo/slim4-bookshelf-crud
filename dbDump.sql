@@ -19,6 +19,9 @@ CREATE TABLE bookmarked (
                             id SERIAL PRIMARY KEY,
                             user_id INT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
                             book_id INT NOT NULL REFERENCES books(id) ON DELETE CASCADE,
-                            bookmarked_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                             UNIQUE (user_id, book_id)
 );
+
+INSERT INTO users (username, email, password, role)
+VALUES ('root', 'root@gmail.com', '$2y$12$s5dQM8OY3f7EDd.lWtGCuexdA5o42lrd7h/7D/94mIzkel1vctbXm', 'admin')
