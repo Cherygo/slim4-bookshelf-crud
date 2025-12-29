@@ -1,0 +1,53 @@
+{% extends 'layouts/layout.twig' %}
+
+{% block content %}
+
+    <div class="container mt-5">
+        <h1 class="mb-4">Add New Book to Catalog</h1>
+        <p class="lead text-muted">Enter the details for the book.</p>
+
+        <div class="card shadow-lg">
+            <div class="card-body">
+
+                <form action="{{ url_for('books.store') }}" method="POST">
+
+                    <div class="mb-3">
+                        <label for="title" class="form-label">Title <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="title" name="title">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="author" class="form-label">Author <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="author" name="author">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="cover_image_url" class="form-label">Cover Image URL</label>
+                        <input type="text" class="form-control" id="cover_image_url" name="cover_image_url">
+                        <div class="form-text">Optional. Provide a direct link to the cover image (e.g., JPEG or PNG).</div>
+                    </div>
+
+                    {% if session.errors is not empty %}
+                        {% for error in session.errors %}
+                            <p class="text-danger">{{ error }}</p>
+                        {% endfor %}
+                    {% endif %}
+
+                    <hr class="my-4">
+
+                    <div class="d-flex justify-content-between">
+                        <a href="{{ url_for('books.index') }}" class="btn btn-outline-secondary">
+                            <i class="fas fa-arrow-left me-2"></i> Back to List
+                        </a>
+                        <button type="submit" class="btn btn-success">
+                            <i class="fas fa-save me-2"></i> Save Book
+                        </button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+
+
+    </div>
+{% endblock %}
