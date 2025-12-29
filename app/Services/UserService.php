@@ -88,4 +88,14 @@ class UserService
     {
         return $_SESSION['user'] ?? false;
     }
+
+    public function getUserDataById($id): array
+    {
+        return $this->userRepository->findById($id);
+    }
+
+    public function updateUserRole($user)
+    {
+        $this->userRepository->changeUserRole($user);
+    }
 }
