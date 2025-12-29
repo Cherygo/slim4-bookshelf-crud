@@ -96,6 +96,6 @@ class UserService
 
     public function updateUserRole($user)
     {
-        $this->userRepository->changeUserRole($user);
+        $this->userRepository->updateUserRole($user);
     }
 }

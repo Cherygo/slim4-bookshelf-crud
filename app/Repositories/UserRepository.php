@@ -61,7 +61,7 @@ class UserRepository
         return $stmt->fetchAll();
     }
 
-    public function changeUserRole($user)
+    public function updateUserRole($user)
     {
         if($user['role'] === 'admin') {
             $sql = "UPDATE users SET role = 'user' WHERE id = ?";
