@@ -58,4 +58,12 @@ class BookRepository
         $stmt = $this->conn->prepare($sql);
         $stmt->execute([$book->title, $book->author, $book->url]);
     }
+
+
+    public function deleteBook($id)
+    {
+        $sql = "DELETE FROM books WHERE id = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute([$id]);
+    }
 }
