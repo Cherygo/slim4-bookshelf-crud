@@ -48,8 +48,8 @@
                                 </td>
 
                                 <td>
-                                    <form action="/admin/admin_users/role/{{ user.id }}" method="POST">
-                                        <input type="hidden" name="redirect_to" value="/admin/admin_users">
+                                    <form action="{{ url_for('users.change-role', {id: user.id}) }}" method="POST">
+                                        <input type="hidden" name="redirect_to" value="{{ url_for('users.index') }}">
 
                                         {% if user.role == 'admin' %}
                                             <button type="submit" name="new_role" value="user" class="btn btn-sm btn-outline-success">
