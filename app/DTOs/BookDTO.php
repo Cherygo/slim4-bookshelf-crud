@@ -9,7 +9,7 @@ class BookDTO
     public function __construct(
         public string $author,
         public string $title,
-        public string $url
+        public ?string $url
     ) {
     }
 
@@ -18,7 +18,7 @@ class BookDTO
         return new self(
             author: $bookData['author'],
             title: $bookData['title'],
-            url: $bookData['url']
+            url: $bookData['url'] ?? null
         );
     }
 
