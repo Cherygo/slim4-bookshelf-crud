@@ -51,4 +51,25 @@ class UserRepository
 
         return $stmt->fetch();
     }
+
+    public function allUsers()
+    {
+        $sql = "SELECT * FROM users";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+
+        return $stmt->fetchAll();
+    }
+
+    public function changeUserRole($user)
+    {
+        if($user['role'] === 'admin') {
+            $sql = "UPDATE users SET role = 'user' WHERE id = ?";
+        }
+        else {
+            $sql = "UPDATE users SET role = 'admin' WHERE id = ?";
+        }
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute([$user['id']]);
+    }
 }
