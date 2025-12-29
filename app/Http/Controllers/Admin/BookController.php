@@ -55,4 +55,12 @@ class BookController extends Controller
 
         return $response->withRedirect('/admin/books');
     }
+
+    public function destroy($request, $response, $args): ResponseInterface
+    {
+        $id = $args['id'];
+
+        $this->bookRepository->deleteBook($id);
+        return $response->withRedirect('/admin/books');
+    }
 }
