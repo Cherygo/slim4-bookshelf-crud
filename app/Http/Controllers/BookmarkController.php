@@ -27,7 +27,13 @@ class BookmarkController extends Controller
 
     public function myBookmarksPage($request, $response): ResponseInterface
     {
-        $user = $this->userService->getAuthorizedUser();
+        try {
+            $user = $this->userService->getAuthorizedUser();
+
+        } catch (\RuntimeException $e) {
+            $this->flash->addMessage('danger', 'Login to access this page');
+            return $response->withRedirect('/login');
+        }
 
         $bookmarkedBooks = $this->bookmarkRepository->getBookmarkedBooks($user->id);
         $bookmarkedBooksIds = $this->bookmarkRepository->getUserBookmarks($user->id);
@@ -57,10 +63,9 @@ class BookmarkController extends Controller
     }
 
 
-    public function deleteBookmark(Request $request, Response $response)
+    public function deleteBookmark(Request $request, Response $response, $args)
     {
-        $params = (array)$request->getParsedBody();
-        $bookId = $params['bookId'];
+        $bookId = $args['id'];
         $user = $this->userService->getAuthorizedUser();
 
         try {
