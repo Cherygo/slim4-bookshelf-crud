@@ -131,8 +131,11 @@ $app->delete('/my_bookmarks/{id}', BookmarkController::class . ':deleteBookmark'
 // Admin
 $app->group('/admin', function (RouteCollectorProxy $group) {
     $group->get('', AdminController::class);
-    $group->get('/books', AdminBookController::class . ':index');
-    $group->get('/books/create', AdminBookController::class . ':create');
+    $group->get('/books', AdminBookController::class . ':index')->setName('books.index');
+    $group->get('/books/create', AdminBookController::class . ':create')
+        ->setName('books.create');
+    $group->post('/books/create', AdminBookController::class . ':store')
+        ->setName('books.store');
 
 })->add(new AdminMiddleware());
 
