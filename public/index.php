@@ -40,12 +40,12 @@ $container->set('flash', function () {
 $container->set(PDO::class, function () {
     try {
         $host = $_ENV['DB_HOST'];
-        $port = $_ENV['DB_PORT'] ?? 3306;
+        $port = $_ENV['DB_PORT'] ?? 5432;
         $dbname = $_ENV['DB_NAME'];
         $user = $_ENV['DB_USER'];
         $pass = $_ENV['DB_PASS'];
 
-        $conn = new PDO("mysql:host=$host;port=$port;dbname=$dbname", $user, $pass);
+        $conn = new PDO("pgsql:host=$host;port=$port;dbname=$dbname", $user, $pass);
 
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $conn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
