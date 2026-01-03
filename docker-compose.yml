@@ -2,17 +2,18 @@
 
 services:
   db:
-    image: mysql:8.0
+    image: postgres:18
     environment:
-      MYSQL_DATABASE: Bookshelf
-      MYSQL_ROOT_PASSWORD: rootpassword
+      POSTGRES_DB: Bookshelf
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: rootpassword
     ports:
-      - "3306:3306"
+      - "5432:5432"
     volumes:
       - ./dbDump.sql:/docker-entrypoint-initdb.d/init.sql
-      - db_data:/var/lib/mysql
+      - db_data:/var/lib/postgressql/data
     healthcheck:
-      test: [ "CMD-SHELL", "mysqladmin ping -h localhost -u root -prootpassword" ]
+      test: [ "CMD-SHELL", "pg_isready -U root -d Bookshelf" ]
       interval: 5s
       timeout: 5s
       retries: 5
@@ -26,6 +27,7 @@ services:
     volumes:
       - .:/app
     depends_on:
-      - db
+      db:
+        condition: service_healthy
 volumes:
   db_data:
