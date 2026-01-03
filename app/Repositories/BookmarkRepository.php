@@ -24,7 +24,8 @@ class BookmarkRepository
     public function bookmarkBook(int $userId, int $bookId)
     {
         if(!$this->isBookmarked($userId, $bookId)) {
-            $sql = "INSERT IGNORE INTO bookmarked (user_id, book_id, created_at) VALUES (?, ?, NOW())";
+            $sql = "INSERT INTO bookmarked (user_id, book_id, created_at) VALUES (?, ?, NOW())
+            ON CONFLICT DO NOTHING";
             $stmt = $this->conn->prepare($sql);
             $stmt->execute([$userId, $bookId]);
 
