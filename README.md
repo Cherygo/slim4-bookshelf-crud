@@ -41,11 +41,11 @@ What you need:
         DB_USER=root
         DB_PASS=rootpassword
 
-5. Build and Run
+4. Build and Run
    Build the application and run in detached mode
    docker-compose up -d --build
 
-6. Import DB tables and data
+5. Import DB tables and data
    cat dbDump.sql | docker-compose exec -T db psql -U root -d Bookshelf
    (Replace "db" with your database container if it differs)
 
@@ -62,7 +62,7 @@ What you need:
 3. Database Setup And Configuration
     1. Create a new, empty database (e.g. Bookshelf) on PostgreSQL.
     2. Import Schema And Data: The dbDump.sql file contains all necessary code you will require to create the database and populate it with sample data.
-        psql -U [your_db_username] -d [your_db_name] < dbDump.sq
+        psql -U [your_db_username] -d [your_db_name] < dbDump.sql
     3. Update Config: Create a .env file in which you should have the following variables:
         DB_HOST=localhost
         DB_PORT=5432
