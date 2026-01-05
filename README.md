@@ -48,7 +48,7 @@ What you need:
    (Replace "db" with your database container if it differs)
 
 ## Method 2: WSL/Linux Terminal
-1. Cloning the Repository:
+1. Cloning the Repository:  
    git clone [https://github.com/Cherygo/slim4-bookshelf-crud.git]<br/>
    cd slim4-bookshelf-crud
 
@@ -57,7 +57,7 @@ What you need:
 
 4. Database Setup And Configuration
     1. Create a new, empty database (e.g. Bookshelf) on PostgreSQL.
-    2. Import Schema And Data: The dbDump.sql file contains all necessary code you will require to create the database and populate it with sample data.
+    2. Import Schema And Data: The dbDump.sql file contains all necessary code you will require to create the database and populate it with sample data.  
         psql -U [your_db_username] -d [your_db_name] < dbDump.sql
     3. Update Config: Create a .env file in which you should have the following variables:  
         DB_HOST=localhost  
