@@ -26,7 +26,7 @@ What you need:
 - Composer (package manager for PHP)
 
 ## Method 1: Docker
-1. Cloning the Repository
+1. Cloning the Repository:  
    git clone [https://github.com/Cherygo/slim4-bookshelf-crud.git]<br/>
    cd slim4-bookshelf-crud
 
@@ -59,12 +59,12 @@ What you need:
     1. Create a new, empty database (e.g. Bookshelf) on PostgreSQL.
     2. Import Schema And Data: The dbDump.sql file contains all necessary code you will require to create the database and populate it with sample data.
         psql -U [your_db_username] -d [your_db_name] < dbDump.sql
-    3. Update Config: Create a .env file in which you should have the following variables:
-        DB_HOST=localhost
-        DB_PORT=5432
-        DB_NAME=Bookshelf
-        DB_USER=root   // OR YOUR DB_USERNAME
-        DB_PASS=rootpassword   // OR YOUR DB_PASSWORD
+    3. Update Config: Create a .env file in which you should have the following variables:  
+        DB_HOST=localhost  
+        DB_PORT=5432  
+        DB_NAME=Bookshelf  
+        DB_USER=root   // OR YOUR DB_USERNAME  
+        DB_PASS=rootpassword   // OR YOUR DB_PASSWORD  
 
 5. Running the Application: Run the following command to start the built-in PHP server:  
         php -S localhost:8000 -t public
