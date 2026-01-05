@@ -27,37 +27,35 @@ What you need:
 
 ## Method 1: Docker
 1. Cloning the Repository
-   git clone [https://github.com/Cherygo/slim4-bookshelf-crud.git]
+   git clone [https://github.com/Cherygo/slim4-bookshelf-crud.git]<br/>
    cd slim4-bookshelf-crud
 
-2. Installing Dependencies
+2. Installing Dependencies (Slim, Twig, PHP-DI):  
    composer install   
-   Use Composer to install the project dependencies (Slim, Twig, PHP-DI).
 
-3. Update Config: Create a .env file in which you should have the following variables:
-        DB_HOST=db
-        DB_PORT=5432
-        DB_NAME=Bookshelf
-        DB_USER=root
-        DB_PASS=rootpassword
+3. Update Config: Create a .env file in which you should have the following variables:  
+        DB_HOST=db  
+        DB_PORT=5432  
+        DB_NAME=Bookshelf  
+        DB_USER=root  
+        DB_PASS=rootpassword  
 
-4. Build and Run
-   Build the application and run in detached mode
+4. Build and Run:<br/>
    docker-compose up -d --build
 
-5. Import DB tables and data
-   cat dbDump.sql | docker-compose exec -T db psql -U root -d Bookshelf
+5. Import DB tables and data:  
+   cat dbDump.sql | docker-compose exec -T db psql -U root -d Bookshelf  
    (Replace "db" with your database container if it differs)
 
 ## Method 2: WSL/Linux Terminal
-1. Cloning the Repository
-   git clone [https://github.com/Cherygo/slim4-bookshelf-crud.git]
+1. Cloning the Repository:
+   git clone [https://github.com/Cherygo/slim4-bookshelf-crud.git]<br/>
    cd slim4-bookshelf-crud
 
-2. Installing Dependencies (Slim, Twig, PHP-DI)
+3. Installing Dependencies (Slim, Twig, PHP-DI):  
    composer install
 
-3. Database Setup And Configuration
+4. Database Setup And Configuration
     1. Create a new, empty database (e.g. Bookshelf) on PostgreSQL.
     2. Import Schema And Data: The dbDump.sql file contains all necessary code you will require to create the database and populate it with sample data.
         psql -U [your_db_username] -d [your_db_name] < dbDump.sql
@@ -68,14 +66,14 @@ What you need:
         DB_USER=root   // OR YOUR DB_USERNAME
         DB_PASS=rootpassword   // OR YOUR DB_PASSWORD
 
-4. Running the Application: Run the following command to start the built-in PHP server:
+5. Running the Application: Run the following command to start the built-in PHP server:  
         php -S localhost:8000 -t public
-5. Access the application at http://localhost:8000
+6. Access the application at: http://localhost:8000
 
 ### Usage And Test Credentials
-Role: admin
-Username: root
-Password: root
+Role: admin  
+Username: root  
+Password: root  
 
 ### Maintainer
-   # Cherygo
+   #### Cherygo
