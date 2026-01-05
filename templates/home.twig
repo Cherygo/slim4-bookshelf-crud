@@ -27,7 +27,7 @@
 
                             <div class="carousel-item {% if loop.first %}active{% endif %}">
 
-                                <img src="{{book.url | default('https://placehold.co/1200x400/333333/ffffff?text=New+Book+Added') }}"
+                                <img src="{{ book.url | default('https://placehold.co/1200x400/333333/ffffff?text=New+Book+Added') }}"
                                      class="d-block w-100 object-fit-cover"
                                      alt="{{ book.title }}"
                                      style="height: 400px; filter: brightness(50%); object-fit: cover;">
