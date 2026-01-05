@@ -27,7 +27,7 @@ What you need:
 
 ## Method 1: Docker
 1. Cloning the Repository
-   git clone [https://github.com/Cherygo/slim4-bookshelf-crud.git](https://github.com/Cherygo/slim4-bookshelf-crud.git)
+   git clone [https://github.com/Cherygo/slim4-bookshelf-crud.git]
    cd slim4-bookshelf-crud
 
 2. Installing Dependencies
@@ -51,13 +51,11 @@ What you need:
 
 ## Method 2: WSL/Linux Terminal
 1. Cloning the Repository
-   git clone [https://github.com/Cherygo/slim4-bookshelf-crud.git](https://github.com/Cherygo/slim4-bookshelf-crud.git)
+   git clone [https://github.com/Cherygo/slim4-bookshelf-crud.git]
    cd slim4-bookshelf-crud
 
-2. Installing Dependencies
+2. Installing Dependencies (Slim, Twig, PHP-DI)
    composer install
-   
-   Use Composer to install the project dependencies (Slim, Twig, PHP-DI).
 
 3. Database Setup And Configuration
     1. Create a new, empty database (e.g. Bookshelf) on PostgreSQL.
