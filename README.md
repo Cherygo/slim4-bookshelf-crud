@@ -26,7 +26,7 @@ What you need:
 - Composer (package manager for PHP)
 
 1. Cloning the Repository
-   git clone [https://github.com/Cherygo/slim4-bookshelf-crud.git](https://github.com/Cherygo/slim4-bookshelf-crud.git)
+   git clone [https://github.com/Cherygo/slim4-bookshelf-crud.git]
    cd slim4-bookshelf-crud
 
 2. Installing Dependencies
