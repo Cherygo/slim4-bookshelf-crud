@@ -1,5 +1,5 @@
 # slim4-bookshelf-crud
-## Access the website at: [slim4-bookshelf-crud.onrender.com/]
+## Access the website at: https://slim4-bookshelf-crud.onrender.com/
 ### What the project does
 The BookShelf application is a full-stack web project trying to demonstrate modern PHP architecture and data modelling.
 It provides an environment to browse and choose books from a catalog, in which they can be bookmarked and then, accessed in the My books page.
